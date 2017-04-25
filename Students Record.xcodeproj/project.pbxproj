@@ -14,6 +14,9 @@
 		F41920461EAF21E000D612E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41920451EAF21E000D612E0 /* Assets.xcassets */; };
 		F41920491EAF21E000D612E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41920471EAF21E000D612E0 /* LaunchScreen.storyboard */; };
 		F41920511EAF24D300D612E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41920501EAF24D300D612E0 /* GoogleService-Info.plist */; };
+		F41920541EAF466A00D612E0 /* StudentDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */; };
+		F41920561EAF46F300D612E0 /* StudentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920551EAF46F300D612E0 /* StudentDataViewController.swift */; };
+		F41920581EAF591300D612E0 /* AddDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920571EAF591300D612E0 /* AddDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		F41920481EAF21E000D612E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F419204A1EAF21E000D612E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F41920501EAF24D300D612E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDataTableViewCell.swift; sourceTree = "<group>"; };
+		F41920551EAF46F300D612E0 /* StudentDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDataViewController.swift; sourceTree = "<group>"; };
+		F41920571EAF591300D612E0 /* AddDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				D0FAAB6E1EAF2A2D0006FDCC /* LoginViewController.swift */,
+				F41920551EAF46F300D612E0 /* StudentDataViewController.swift */,
+				F41920571EAF591300D612E0 /* AddDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -90,6 +98,7 @@
 			children = (
 				F41920501EAF24D300D612E0 /* GoogleService-Info.plist */,
 				F419203E1EAF21E000D612E0 /* AppDelegate.swift */,
+				F41920521EAF462F00D612E0 /* TableViewCells */,
 				D0FAAB6D1EAF29C00006FDCC /* ViewControllers */,
 				F41920421EAF21E000D612E0 /* Main.storyboard */,
 				F41920451EAF21E000D612E0 /* Assets.xcassets */,
@@ -97,6 +106,14 @@
 				F419204A1EAF21E000D612E0 /* Info.plist */,
 			);
 			path = "Students Record";
+			sourceTree = "<group>";
+		};
+		F41920521EAF462F00D612E0 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41920581EAF591300D612E0 /* AddDetailsViewController.swift in Sources */,
 				D0FAAB6F1EAF2A2D0006FDCC /* LoginViewController.swift in Sources */,
+				F41920541EAF466A00D612E0 /* StudentDataTableViewCell.swift in Sources */,
+				F41920561EAF46F300D612E0 /* StudentDataViewController.swift in Sources */,
 				F419203F1EAF21E000D612E0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +373,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5DM37TEFRF;
 				INFOPLIST_FILE = "Students Record/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xminds.Students-Record";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,6 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5DM37TEFRF;
 				INFOPLIST_FILE = "Students Record/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xminds.Students-Record";
 				PRODUCT_NAME = "$(TARGET_NAME)";
