@@ -15,6 +15,7 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
     
     let ref = FIRDatabase.database().reference().child("StudentList")
     @IBOutlet var studentTableView: UITableView!
+    @IBOutlet var activity: UIActivityIndicatorView!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +28,11 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        activity.startAnimating()
         ref.observeSingleEvent(of: .value, with: { snapshot in
             self.studentsArray = snapshot.children.allObjects
             self.studentTableView.reloadData()
+            self.activity.stopAnimating()
         })
 
     }
