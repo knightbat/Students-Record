@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53B254591B217E80A15FC79F /* Pods_Students_Record.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */; };
 		F419203F1EAF21E000D612E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419203E1EAF21E000D612E0 /* AppDelegate.swift */; };
 		F41920411EAF21E000D612E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920401EAF21E000D612E0 /* ViewController.swift */; };
 		F41920441EAF21E000D612E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41920421EAF21E000D612E0 /* Main.storyboard */; };
 		F41920461EAF21E000D612E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41920451EAF21E000D612E0 /* Assets.xcassets */; };
 		F41920491EAF21E000D612E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41920471EAF21E000D612E0 /* LaunchScreen.storyboard */; };
+		F41920511EAF24D300D612E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41920501EAF24D300D612E0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		199585A66A24DB8268CF0E9F /* Pods-Students Record.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Students Record.release.xcconfig"; path = "Pods/Target Support Files/Pods-Students Record/Pods-Students Record.release.xcconfig"; sourceTree = "<group>"; };
+		35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Students_Record.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B1A40EEFCA269B4091C5BC /* Pods-Students Record.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Students Record.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Students Record/Pods-Students Record.debug.xcconfig"; sourceTree = "<group>"; };
 		F419203B1EAF21E000D612E0 /* Students Record.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Students Record.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F419203E1EAF21E000D612E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F41920401EAF21E000D612E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		F41920451EAF21E000D612E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41920481EAF21E000D612E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F419204A1EAF21E000D612E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F41920501EAF24D300D612E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B254591B217E80A15FC79F /* Pods_Students_Record.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF5EA8754909BE9446EC3281 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90B1A40EEFCA269B4091C5BC /* Pods-Students Record.debug.xcconfig */,
+				199585A66A24DB8268CF0E9F /* Pods-Students Record.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC8DF7BD322944302BC46AC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F41920321EAF21E000D612E0 = {
 			isa = PBXGroup;
 			children = (
 				F419203D1EAF21E000D612E0 /* Students Record */,
 				F419203C1EAF21E000D612E0 /* Products */,
+				BF5EA8754909BE9446EC3281 /* Pods */,
+				EC8DF7BD322944302BC46AC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +80,7 @@
 		F419203D1EAF21E000D612E0 /* Students Record */ = {
 			isa = PBXGroup;
 			children = (
+				F41920501EAF24D300D612E0 /* GoogleService-Info.plist */,
 				F419203E1EAF21E000D612E0 /* AppDelegate.swift */,
 				F41920401EAF21E000D612E0 /* ViewController.swift */,
 				F41920421EAF21E000D612E0 /* Main.storyboard */,
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F419204D1EAF21E000D612E0 /* Build configuration list for PBXNativeTarget "Students Record" */;
 			buildPhases = (
+				B8EB7C3F23672182818B938D /* [CP] Check Pods Manifest.lock */,
 				F41920371EAF21E000D612E0 /* Sources */,
 				F41920381EAF21E000D612E0 /* Frameworks */,
 				F41920391EAF21E000D612E0 /* Resources */,
+				745C9F1F8E990C00E0799DC7 /* [CP] Embed Pods Frameworks */,
+				CAC41ED3655065D8A1DF26A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,12 +155,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				F41920491EAF21E000D612E0 /* LaunchScreen.storyboard in Resources */,
+				F41920511EAF24D300D612E0 /* GoogleService-Info.plist in Resources */,
 				F41920461EAF21E000D612E0 /* Assets.xcassets in Resources */,
 				F41920441EAF21E000D612E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		745C9F1F8E990C00E0799DC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Students Record/Pods-Students Record-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8EB7C3F23672182818B938D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CAC41ED3655065D8A1DF26A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Students Record/Pods-Students Record-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F41920371EAF21E000D612E0 /* Sources */ = {
@@ -261,6 +340,7 @@
 		};
 		F419204E1EAF21E000D612E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90B1A40EEFCA269B4091C5BC /* Pods-Students Record.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5DM37TEFRF;
@@ -274,6 +354,7 @@
 		};
 		F419204F1EAF21E000D612E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 199585A66A24DB8268CF0E9F /* Pods-Students Record.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5DM37TEFRF;
