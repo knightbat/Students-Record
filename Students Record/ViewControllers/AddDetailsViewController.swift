@@ -17,12 +17,21 @@ class AddDetailsViewController: UIViewController {
     @IBOutlet var rollnumLabel: UITextField!
     
     let ref = FIRDatabase.database().reference(withPath:"StudentList")
-    
+    var studentData : FIRDataSnapshot = FIRDataSnapshot()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        if (!studentData.key.isEmpty) {
+            
+            rollnumLabel.isUserInteractionEnabled = false
+            rollnumLabel.text = studentData.key
+            let data : [String:String] = studentData.value as! [String : String];
+            nameLabel.text = data["name"]
+            ageLabel.text = data["age"]
+            markLabel.text = data["mark"]
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,12 +42,22 @@ class AddDetailsViewController: UIViewController {
     
     @IBAction func saveClicked(_ sender: UIButton) {
         
-       let studentRef = ref.child(rollnumLabel.text!)
-        studentRef.setValue([
-            "name":nameLabel.text,
-            "age":ageLabel.text,
-            "mark":markLabel.text
-            ])
+        if studentData.key.isEmpty {
+            let studentRef = ref.child(rollnumLabel.text!)
+            studentRef.setValue([
+                "name":nameLabel.text,
+                "age":ageLabel.text,
+                "mark":markLabel.text
+                ])
+        } else {
+            
+            let studentRef = ref.child(studentData.key)
+            studentRef.updateChildValues([
+                "name":nameLabel.text!,
+                "age":ageLabel.text!,
+                "mark":markLabel.text!])
+
+        }
         _ = self.navigationController?.popViewController(animated: true)
     }
     /*

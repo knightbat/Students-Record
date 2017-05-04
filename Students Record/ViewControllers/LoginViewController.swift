@@ -31,7 +31,6 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
