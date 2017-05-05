@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		53B254591B217E80A15FC79F /* Pods_Students_Record.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */; };
 		D0FAAB6F1EAF2A2D0006FDCC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAAB6E1EAF2A2D0006FDCC /* LoginViewController.swift */; };
+		F40EB2CB1EBC41B400D8E1C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40EB2CA1EBC41B400D8E1C5 /* MapKit.framework */; };
+		F40EB2CD1EBC41BC00D8E1C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40EB2CC1EBC41BC00D8E1C5 /* CoreLocation.framework */; };
+		F40EB2CF1EBC7F9400D8E1C5 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40EB2CE1EBC7F9400D8E1C5 /* DetailsViewController.swift */; };
 		F419203F1EAF21E000D612E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419203E1EAF21E000D612E0 /* AppDelegate.swift */; };
 		F41920441EAF21E000D612E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41920421EAF21E000D612E0 /* Main.storyboard */; };
 		F41920461EAF21E000D612E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41920451EAF21E000D612E0 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Students_Record.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B1A40EEFCA269B4091C5BC /* Pods-Students Record.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Students Record.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Students Record/Pods-Students Record.debug.xcconfig"; sourceTree = "<group>"; };
 		D0FAAB6E1EAF2A2D0006FDCC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F40EB2CA1EBC41B400D8E1C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F40EB2CC1EBC41BC00D8E1C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F40EB2CE1EBC7F9400D8E1C5 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		F419203B1EAF21E000D612E0 /* Students Record.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Students Record.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F419203E1EAF21E000D612E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F41920431EAF21E000D612E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40EB2CD1EBC41BC00D8E1C5 /* CoreLocation.framework in Frameworks */,
+				F40EB2CB1EBC41B400D8E1C5 /* MapKit.framework in Frameworks */,
 				53B254591B217E80A15FC79F /* Pods_Students_Record.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +71,7 @@
 				D0FAAB6E1EAF2A2D0006FDCC /* LoginViewController.swift */,
 				F41920551EAF46F300D612E0 /* StudentDataViewController.swift */,
 				F41920571EAF591300D612E0 /* AddDetailsViewController.swift */,
+				F40EB2CE1EBC7F9400D8E1C5 /* DetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -70,6 +79,8 @@
 		EC8DF7BD322944302BC46AC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F40EB2CC1EBC41BC00D8E1C5 /* CoreLocation.framework */,
+				F40EB2CA1EBC41B400D8E1C5 /* MapKit.framework */,
 				35DA241D87BA34A239EADBFF /* Pods_Students_Record.framework */,
 			);
 			name = Frameworks;
@@ -246,6 +257,7 @@
 				F41920541EAF466A00D612E0 /* StudentDataTableViewCell.swift in Sources */,
 				F41920561EAF46F300D612E0 /* StudentDataViewController.swift in Sources */,
 				F419203F1EAF21E000D612E0 /* AppDelegate.swift in Sources */,
+				F40EB2CF1EBC7F9400D8E1C5 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

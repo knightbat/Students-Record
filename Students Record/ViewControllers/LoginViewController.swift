@@ -10,16 +10,17 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextFiled: UITextField!
     var handle: FIRAuthStateDidChangeListenerHandle?
-  
+    
+    @IBOutlet var scrolContainer: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        
         let user = FIRAuth.auth()?.currentUser
         if (user != nil) {
             
@@ -36,7 +37,7 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         handle = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
-           
+            
         })
         
     }
@@ -63,7 +64,6 @@ class LoginViewController: UIViewController {
         var errMsg : String = ""
         
         if (emailTextfield.text?.isEmpty)! || (passwordTextFiled.text?.isEmpty)! {
-            
             print("\(emailTextfield.text ?? "") \(passwordTextFiled.text ?? "")" )
             errMsg = "Empty email or password"
         } else if !isValidEmail(testStr: emailTextfield.text!) {
@@ -71,25 +71,19 @@ class LoginViewController: UIViewController {
         }
         
         if !errMsg.isEmpty {
-            
             print("\(errMsg)")
             setupAlert(title: "Error !", message: errMsg)
-            
         } else {
+            
             FIRAuth.auth()?.signIn(withEmail: emailTextfield.text!, password: passwordTextFiled.text!) { (user, error) in
                 
                 if (user != nil) {
-                    
                     self.performSegue(withIdentifier: "studentData", sender: self)
-                    
                 } else {
                     self.setupAlert(title: "Error !", message: "Failed to Login. Please try again later.")
-                    
                 }
             }
-            
         }
-        
     }
     
     func isValidEmail(testStr:String) -> Bool {
@@ -108,4 +102,24 @@ class LoginViewController: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrolContainer.setContentOffset(CGPoint(x:0,y:textField.frame.origin.y-20), animated: true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField.isEqual(emailTextfield) {
+            passwordTextFiled.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+        }
+        
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+        scrolContainer.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        
+}
 }
