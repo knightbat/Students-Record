@@ -35,22 +35,26 @@ class AddDetailsViewController: UIViewController,MKMapViewDelegate,CLLocationMan
         mapView.layer.borderWidth = 1
         
         
-        locationManager = CLLocationManager ()
-        locationManager.delegate = self;
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        
-        locationManager.requestWhenInUseAuthorization();
-        locationManager.startUpdatingLocation();
-        
         if (!studentData.key.isEmpty) {
             
             rollnumLabel.isUserInteractionEnabled = false
             rollnumLabel.text = studentData.key
-            let data : [String:String] = studentData.value as! [String : String];
-            nameLabel.text = data["name"]
-            ageLabel.text = data["age"]
-            markLabel.text = data["mark"]
+            let data : [String:Any] = studentData.value as! [String : Any] ;
+            nameLabel.text = data["name"] as? String
+            ageLabel.text = data["age"] as? String
+            markLabel.text = data["mark"] as? String
+            
+            let coord = CLLocationCoordinate2DMake(data["lat"] as! CLLocationDegrees, data["lng"] as! CLLocationDegrees )
+            setMapView(coord: coord)
+        } else {
+            
+            locationManager = CLLocationManager ()
+            locationManager.delegate = self;
+            locationManager.distanceFilter = kCLDistanceFilterNone;
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+            
+            locationManager.requestWhenInUseAuthorization();
+            locationManager.startUpdatingLocation();
         }
     }
     
@@ -84,6 +88,19 @@ class AddDetailsViewController: UIViewController,MKMapViewDelegate,CLLocationMan
         
     }
     
+    func setupAlert(title : String, message: String) {
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "OK",
+                                         style: .cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - IBActions
     
     @IBAction func keyboardDoneClicked (_ sender: Any) {
@@ -92,31 +109,50 @@ class AddDetailsViewController: UIViewController,MKMapViewDelegate,CLLocationMan
     
     @IBAction func saveClicked(_ sender: UIButton) {
         
-        let location = "\(mapView.centerCoordinate.latitude),\(mapView.centerCoordinate.longitude)"
-        print(location)
+        var message = ""
         
-        if studentData.key.isEmpty {
-            let studentRef = ref.child(rollnumLabel.text!)
-            studentRef.setValue([
-                "name":nameLabel.text!,
-                "age":ageLabel.text!,
-                "mark":markLabel.text!,
-                "lat":mapView.centerCoordinate.latitude,
-                "lng":mapView.centerCoordinate.longitude
-                ])
+        let location = "\(mapView.centerCoordinate.latitude),\(mapView.centerCoordinate.longitude)"
+        
+        if (rollnumLabel.text?.isEmpty)! {
+            message = "Please Enter A Roll Number."
+        } else if (nameLabel.text?.isEmpty)! {
+            message = "Please Enter A Name."
+        } else if (ageLabel.text?.isEmpty)! {
+            message = "Please Enter Age."
+        } else if (markLabel.text?.isEmpty)! {
+            message = "Please Enter the Mark."
+        } else if (location.isEmpty) {
+            message = "Please Choose your location."
+        }
+        
+        if message.isEmpty {
+            
+            if studentData.key.isEmpty {
+                let studentRef = ref.child(rollnumLabel.text!)
+                studentRef.setValue([
+                    "name":nameLabel.text!,
+                    "age":ageLabel.text!,
+                    "mark":markLabel.text!,
+                    "lat":mapView.centerCoordinate.latitude,
+                    "lng":mapView.centerCoordinate.longitude
+                    ])
+            } else {
+                
+                let studentRef = ref.child(studentData.key)
+                studentRef.updateChildValues([
+                    "name":nameLabel.text!,
+                    "age":ageLabel.text!,
+                    "mark":markLabel.text!,
+                    "lat":mapView.centerCoordinate.latitude,
+                    "lng":mapView.centerCoordinate.longitude
+                    ])
+                
+            }
+            _ = self.navigationController?.popViewController(animated: true)
         } else {
             
-            let studentRef = ref.child(studentData.key)
-            studentRef.updateChildValues([
-                "name":nameLabel.text!,
-                "age":ageLabel.text!,
-                "mark":markLabel.text!,
-                "lat":mapView.centerCoordinate.latitude,
-                "lng":mapView.centerCoordinate.longitude
-                ])
-            
+            setupAlert(title: "Alert", message: message)
         }
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - MapView Delegates
@@ -160,7 +196,12 @@ class AddDetailsViewController: UIViewController,MKMapViewDelegate,CLLocationMan
     // MARK: - UITextField Delegates
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrlContainer.setContentOffset(CGPoint(x:0,y:textField.frame.origin.y+10), animated: true)
+        
+        //        CGPoint point  = [textField convertPoint:textField.frame.origin toView:self.view];
+        //        [self.scrollView setContentOffset:CGPointMake(0, point.y-60) animated:YES];
+        let point : CGPoint = textField.convert(textField.frame.origin, to: self.view)
+        
+        scrlContainer.setContentOffset(CGPoint(x:0,y:point.y+20), animated: true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
