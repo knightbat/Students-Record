@@ -20,6 +20,12 @@
 		F41920541EAF466A00D612E0 /* StudentDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */; };
 		F41920561EAF46F300D612E0 /* StudentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920551EAF46F300D612E0 /* StudentDataViewController.swift */; };
 		F41920581EAF591300D612E0 /* AddDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41920571EAF591300D612E0 /* AddDetailsViewController.swift */; };
+		F4F5FD781EC04A5C0038BB33 /* XMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD721EC04A5C0038BB33 /* XMButton.swift */; };
+		F4F5FD791EC04A5C0038BB33 /* XMImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD731EC04A5C0038BB33 /* XMImageView.swift */; };
+		F4F5FD7A1EC04A5C0038BB33 /* XMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD741EC04A5C0038BB33 /* XMLabel.swift */; };
+		F4F5FD7B1EC04A5C0038BB33 /* XMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD751EC04A5C0038BB33 /* XMTextField.swift */; };
+		F4F5FD7C1EC04A5C0038BB33 /* XMTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD761EC04A5C0038BB33 /* XMTextView.swift */; };
+		F4F5FD7D1EC04A5C0038BB33 /* XMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5FD771EC04A5C0038BB33 /* XMView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDataTableViewCell.swift; sourceTree = "<group>"; };
 		F41920551EAF46F300D612E0 /* StudentDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDataViewController.swift; sourceTree = "<group>"; };
 		F41920571EAF591300D612E0 /* AddDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDetailsViewController.swift; sourceTree = "<group>"; };
+		F4F5FD721EC04A5C0038BB33 /* XMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMButton.swift; sourceTree = "<group>"; };
+		F4F5FD731EC04A5C0038BB33 /* XMImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMImageView.swift; sourceTree = "<group>"; };
+		F4F5FD741EC04A5C0038BB33 /* XMLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLabel.swift; sourceTree = "<group>"; };
+		F4F5FD751EC04A5C0038BB33 /* XMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMTextField.swift; sourceTree = "<group>"; };
+		F4F5FD761EC04A5C0038BB33 /* XMTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMTextView.swift; sourceTree = "<group>"; };
+		F4F5FD771EC04A5C0038BB33 /* XMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 			children = (
 				F41920501EAF24D300D612E0 /* GoogleService-Info.plist */,
 				F419203E1EAF21E000D612E0 /* AppDelegate.swift */,
+				F4F5FD711EC04A5C0038BB33 /* Extensions */,
 				F41920521EAF462F00D612E0 /* TableViewCells */,
 				D0FAAB6D1EAF29C00006FDCC /* ViewControllers */,
 				F41920421EAF21E000D612E0 /* Main.storyboard */,
@@ -125,6 +138,19 @@
 				F41920531EAF466A00D612E0 /* StudentDataTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		F4F5FD711EC04A5C0038BB33 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4F5FD721EC04A5C0038BB33 /* XMButton.swift */,
+				F4F5FD731EC04A5C0038BB33 /* XMImageView.swift */,
+				F4F5FD741EC04A5C0038BB33 /* XMLabel.swift */,
+				F4F5FD751EC04A5C0038BB33 /* XMTextField.swift */,
+				F4F5FD761EC04A5C0038BB33 /* XMTextView.swift */,
+				F4F5FD771EC04A5C0038BB33 /* XMView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,10 +280,16 @@
 			files = (
 				F41920581EAF591300D612E0 /* AddDetailsViewController.swift in Sources */,
 				D0FAAB6F1EAF2A2D0006FDCC /* LoginViewController.swift in Sources */,
+				F4F5FD7B1EC04A5C0038BB33 /* XMTextField.swift in Sources */,
+				F4F5FD7D1EC04A5C0038BB33 /* XMView.swift in Sources */,
 				F41920541EAF466A00D612E0 /* StudentDataTableViewCell.swift in Sources */,
+				F4F5FD7A1EC04A5C0038BB33 /* XMLabel.swift in Sources */,
 				F41920561EAF46F300D612E0 /* StudentDataViewController.swift in Sources */,
 				F419203F1EAF21E000D612E0 /* AppDelegate.swift in Sources */,
+				F4F5FD7C1EC04A5C0038BB33 /* XMTextView.swift in Sources */,
 				F40EB2CF1EBC7F9400D8E1C5 /* DetailsViewController.swift in Sources */,
+				F4F5FD781EC04A5C0038BB33 /* XMButton.swift in Sources */,
+				F4F5FD791EC04A5C0038BB33 /* XMImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

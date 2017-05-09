@@ -14,13 +14,21 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
     
     var studentsArray: [Any] = []
     
+    @IBOutlet var emptyLabel: UILabel!
+    @IBOutlet var popupView: UIView!
     let ref = FIRDatabase.database().reference().child("StudentList")
+    var arrayCount = 0
+    
     @IBOutlet var studentTableView: UITableView!
     @IBOutlet var activity: UIActivityIndicatorView!
     
+    @IBOutlet var searchTextField: UITextField!
+    
+    @IBOutlet var innerView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        popupView.isHidden = true
         
         
     }
@@ -30,28 +38,97 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     override func viewWillAppear(_ animated: Bool) {
         activity.startAnimating()
+        emptyLabel.text = ""
+        getData()
+    }
+    // MARK: -Methods
+    
+    func getData()  {
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
             self.studentsArray = snapshot.children.allObjects
-            self.studentTableView.reloadData()
+            
+            if (self.studentsArray.count == 0) {
+                self.emptyLabel.text = "No Data"
+            } else {
+                self.studentTableView.reloadData()
+                self.arrayCount = self.studentsArray.count
+                self.emptyLabel.text = ""
+            }
             self.activity.stopAnimating()
         })
         
     }
+    
+    func search (searchText: String) {
+        
+        self.ref.queryOrdered(byChild: "name").queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
+            self.studentsArray = snapshot.children.allObjects
+            
+            if self.studentsArray.count == 0 {
+                
+                self.ref.queryOrdered(byChild: "age").queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    self.studentsArray = snapshot.children.allObjects
+                    
+                    if self.studentsArray.count == 0 {
+                        
+                        self.ref.queryOrdered(byChild: "mark").queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
+                            
+                             self.studentsArray = snapshot.children.allObjects
+                            if self.studentsArray.count == 0 {
+                                
+                                self.ref.queryOrderedByKey().queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
+                                    
+                                     self.studentsArray = snapshot.children.allObjects
+                                    if self.studentsArray.count == 0 {
+                                        self.emptyLabel.text = "No Data"
+                                    } else {
+                                        self.emptyLabel.text = ""
+                                    }
+                                    self.studentTableView.reloadData()
+                                })
+                            } else {
+                                self.studentTableView.reloadData()
+                                self.emptyLabel.text = ""
+                            }
+                        })
+                    } else {
+                        self.studentTableView.reloadData()
+                        self.emptyLabel.text = ""
+                    }
+                })
+            } else {
+                self.studentTableView.reloadData()
+                self.emptyLabel.text = ""
+            }
+        })
+        
+    }
+    
+    // MARK: -UIButton Actions
+    @IBAction func filterClicked(_ sender: UIButton) {
+        
+        self.view.bringSubview(toFront: popupView)
+        popupView.isHidden = false
+    }
+    
     @IBAction func sortClicked(_ sender: UIButton) {
         
-        let array = ["by name","by mark","by age"]
+        let array = ["by name","by age","by mark"]
         ActionSheetStringPicker.show(withTitle: "Sort", rows:array , initialSelection: 0, doneBlock: {
             picker, indexes, values in
+            
+            self.activity.startAnimating()
             
             var param:String = ""
             
             if indexes == 0 {
                 param = "name"
             } else if indexes == 1 {
-                 param = "age"
+                param = "age"
             } else {
-                 param = "mark"
+                param = "mark"
             }
             
             (self.ref).queryOrdered(byChild: param).observeSingleEvent(of: .value, with: { snapshot in
@@ -61,7 +138,81 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
             })
             self.studentTableView.reloadData()
             
-        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+        }, cancel: { ActionMultipleStringCancelBlock in return },
+           origin: sender)
+    }
+    
+    //    @IBAction func limitedToEndingClicked(_ sender: Any) {
+    //
+    //        self.ref.queryOrdered(byChild: "name").queryEnding(atValue: "bindu").observeSingleEvent(of: .value, with: { snapshot in
+    //            self.studentsArray = snapshot.children.allObjects
+    //            self.studentTableView.reloadData()
+    //            self.activity.stopAnimating()
+    //        })
+    //        self.popupView.isHidden = true
+    //
+    //    }
+    @IBAction func limitedToFirstClicked(_ sender: Any) {
+        
+        var array = Array<Any> ();
+        for i in 1..<arrayCount {
+            array.append("\(i) student(s)")
+        }
+        ActionSheetStringPicker.show(withTitle: "Filter", rows:array , initialSelection: 0, doneBlock: { picker, indexes, values in
+            
+            self.ref.queryLimited(toFirst: UInt(indexes+1)).observeSingleEvent(of: .value, with: { snapshot in
+                self.studentsArray = snapshot.children.allObjects
+                self.studentTableView.reloadData()
+                self.activity.stopAnimating()
+            })
+            self.popupView.isHidden = true
+            
+        }, cancel: { ActionMultipleStringCancelBlock in return },
+           origin: sender)
+    }
+    
+    //    @IBAction func limitedToStartingClicked(_ sender: Any) {
+    //
+    //        self.ref.queryOrdered(byChild: "age").queryStarting(atValue: 26).observeSingleEvent(of: .value, with: { snapshot in
+    //            self.studentsArray = snapshot.children.allObjects
+    //            self.studentTableView.reloadData()
+    //            self.activity.stopAnimating()
+    //        })
+    //        self.popupView.isHidden = true
+    //
+    //    }
+    @IBAction func limitedToLastClicked(_ sender: Any) {
+        
+        var array = Array<Any> ();
+        
+        for  i in 1..<arrayCount-1 {
+            array.append("\(i) student(s)")
+        }
+        ActionSheetStringPicker.show(withTitle: "Filter", rows:array , initialSelection: 0, doneBlock: { picker, indexes, values in
+            
+            self.ref.queryLimited(toLast: UInt(indexes+1)).observeSingleEvent(of: .value, with: { snapshot in
+                self.studentsArray = snapshot.children.allObjects
+                self.studentTableView.reloadData()
+                self.activity.stopAnimating()
+            })
+            self.popupView.isHidden = true
+        }, cancel: { ActionMultipleStringCancelBlock in return },
+           origin: sender)
+    }
+    
+    @IBAction func resetClicked(_ sender: Any) {
+        
+        activity.startAnimating()
+        popupView.isHidden = true
+        getData()
+    }
+    
+    @IBAction func searchClicked(_ sender: Any) {
+        search(searchText: searchTextField.text!)
+    }
+    
+    @IBAction func closeClicked(_ sender: Any) {
+        popupView.isHidden = true
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
