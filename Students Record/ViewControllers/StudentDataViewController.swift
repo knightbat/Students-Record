@@ -50,8 +50,12 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
             
             if (self.studentsArray.count == 0) {
                 self.emptyLabel.text = "No Data"
+                self.studentTableView.separatorStyle = UITableViewCellSeparatorStyle.none
             } else {
                 self.studentTableView.reloadData()
+                self.studentTableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                self.studentTableView.tableFooterView = UIView (frame: CGRect.zero)
+                
                 self.arrayCount = self.studentsArray.count
                 self.emptyLabel.text = ""
             }
@@ -62,6 +66,8 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
     
     func search (searchText: String) {
         
+        searchTextField.text = ""
+
         self.ref.queryOrdered(byChild: "name").queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
             self.studentsArray = snapshot.children.allObjects
             
@@ -75,14 +81,15 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
                         
                         self.ref.queryOrdered(byChild: "mark").queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
                             
-                             self.studentsArray = snapshot.children.allObjects
+                            self.studentsArray = snapshot.children.allObjects
                             if self.studentsArray.count == 0 {
                                 
                                 self.ref.queryOrderedByKey().queryEqual(toValue: searchText).observeSingleEvent(of: .value, with: { snapshot in
                                     
-                                     self.studentsArray = snapshot.children.allObjects
+                                    self.studentsArray = snapshot.children.allObjects
                                     if self.studentsArray.count == 0 {
                                         self.emptyLabel.text = "No Data"
+                                        self.studentTableView.separatorStyle = UITableViewCellSeparatorStyle.none
                                     } else {
                                         self.emptyLabel.text = ""
                                     }
@@ -142,16 +149,6 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
            origin: sender)
     }
     
-    //    @IBAction func limitedToEndingClicked(_ sender: Any) {
-    //
-    //        self.ref.queryOrdered(byChild: "name").queryEnding(atValue: "bindu").observeSingleEvent(of: .value, with: { snapshot in
-    //            self.studentsArray = snapshot.children.allObjects
-    //            self.studentTableView.reloadData()
-    //            self.activity.stopAnimating()
-    //        })
-    //        self.popupView.isHidden = true
-    //
-    //    }
     @IBAction func limitedToFirstClicked(_ sender: Any) {
         
         var array = Array<Any> ();
@@ -171,21 +168,11 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
            origin: sender)
     }
     
-    //    @IBAction func limitedToStartingClicked(_ sender: Any) {
-    //
-    //        self.ref.queryOrdered(byChild: "age").queryStarting(atValue: 26).observeSingleEvent(of: .value, with: { snapshot in
-    //            self.studentsArray = snapshot.children.allObjects
-    //            self.studentTableView.reloadData()
-    //            self.activity.stopAnimating()
-    //        })
-    //        self.popupView.isHidden = true
-    //
-    //    }
     @IBAction func limitedToLastClicked(_ sender: Any) {
         
         var array = Array<Any> ();
         
-        for  i in 1..<arrayCount-1 {
+        for  i in 1..<arrayCount {
             array.append("\(i) student(s)")
         }
         ActionSheetStringPicker.show(withTitle: "Filter", rows:array , initialSelection: 0, doneBlock: { picker, indexes, values in
@@ -208,6 +195,7 @@ class StudentDataViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     @IBAction func searchClicked(_ sender: Any) {
+        
         search(searchText: searchTextField.text!)
     }
     
